@@ -1,5 +1,4 @@
 import cv2
-import math
 import re
 class ChessBoard:
     def __init__(self, img):
@@ -8,14 +7,12 @@ class ChessBoard:
         self.height = (height/8)
 
     def resize(self,size):
-        flag = 0
-        while(not flag):
-            try:
-                int(size)
-                flag = 1
-            except:
-                print('Enter a valid Size!')
-                size = input()
+        try:
+            size = int(size)
+            self.img = cv2.resize(self.img, (size,size), interpolation = cv2.INTER_AREA)
+            self.height = size
+        except:
+            print('Enter a valid Size!')
             
 
     def drawing(self, block_name):
